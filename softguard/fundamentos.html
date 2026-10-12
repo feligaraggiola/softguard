@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Fundamentos de calidad</title>
+  <link rel="icon" href="img/logo.svg">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.svg" alt="Logo de SoftGuard">
+      <span>SOFTGUARD</span>
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html" class="activo">Gestión de calidad</a>
+    <a href="metodologia.html">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="gestion-calidad.html">Gestión de calidad</a> / Fundamentos</p>
+
+    <h1 class="animar demora-1">Fundamentos de calidad</h1>
+    <p class="bajada animar demora-2">
+      Conoce los conceptos clave de calidad, las métricas y los estándares
+      <span class="resaltado">ISO 9126</span> e <span class="resaltado">ISO/IEC 25000</span>.
+    </p>
+
+    <!-- Las tres tarjetas con los conceptos básicos -->
+    <section class="grilla-3">
+      <article class="tarjeta animar demora-2">
+        <h3>Calidad</h3>
+        <p>Grado en que un producto de software satisface las necesidades y expectativas de quienes lo usan.</p>
+      </article>
+      <article class="tarjeta animar demora-3">
+        <h3>Métricas</h3>
+        <p>Mediciones objetivas que permiten evaluar y comparar la calidad del producto y del proceso.</p>
+      </article>
+      <article class="tarjeta animar demora-4">
+        <h3>Estándares</h3>
+        <p>Normas internacionales que definen qué características de calidad evaluar y cómo hacerlo.</p>
+      </article>
+    </section>
+
+    <h2 class="animar demora-4">Estándares ISO</h2>
+
+    <!-- Los dos botones que cambian el cuadro de abajo
+         (data-panel dice qué cuadro tiene que mostrar cada uno) -->
+    <div class="pastillas animar demora-5">
+      <button class="pastilla activa" data-panel="iso9126">ISO 9126</button>
+      <button class="pastilla" data-panel="iso25000">ISO/IEC 25000</button>
+    </div>
+
+    <!-- Cuadro de ISO 9126 (se ve al principio) -->
+    <article class="tarjeta animar demora-6" id="iso9126">
+      <h3>ISO 9126 · 6 características</h3>
+      <div class="chips">
+        <span class="chip">Funcionalidad</span>
+        <span class="chip">Fiabilidad</span>
+        <span class="chip">Usabilidad</span>
+        <span class="chip">Eficiencia</span>
+        <span class="chip">Mantenibilidad</span>
+        <span class="chip">Portabilidad</span>
+      </div>
+    </article>
+
+    <!-- Cuadro de ISO/IEC 25000 (empieza escondido con "hidden") -->
+    <article class="tarjeta" id="iso25000" hidden>
+      <h3>ISO/IEC 25000 · 8 características</h3>
+      <div class="chips">
+        <span class="chip">Adecuación funcional</span>
+        <span class="chip">Eficiencia de desempeño</span>
+        <span class="chip">Compatibilidad</span>
+        <span class="chip">Usabilidad</span>
+        <span class="chip">Fiabilidad</span>
+        <span class="chip">Seguridad</span>
+        <span class="chip">Mantenibilidad</span>
+        <span class="chip">Portabilidad</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html" class="activo">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

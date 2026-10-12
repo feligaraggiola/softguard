@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112">
+  <!-- Logo de SoftGuard: una S grande con un escudo y un tilde adentro -->
+  <defs>
+    <!-- este "molde" le hace un hueco a la S justo donde va el escudo -->
+    <mask id="hueco">
+      <rect x="-10" y="-10" width="120" height="120" fill="#fff"/>
+      <path d="M51 22 L74 30 V48 C74 63 64 72 51 77 C38 72 28 63 28 48 V30 Z" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- la S (con el hueco del escudo) -->
+    <g mask="url(#hueco)">
+      <path d="M80 10 H44 C24 10 12 22 12 38 C12 50 20 56 30 60 L62 65" stroke-width="12"/>
+      <path d="M60 64 L74 70 C84 74 90 78 90 85 C90 92 82 96 70 96 H24" stroke-width="12"/>
+    </g>
+    <!-- el escudo -->
+    <path d="M51 29 L67 35 V48 C67 59 60 65 51 69 C42 65 35 59 35 48 V35 Z" stroke-width="5"/>
+    <!-- el tilde -->
+    <path d="M44 48 L49.5 53.5 L59 43" stroke-width="5"/>
+  </g>
+</svg>

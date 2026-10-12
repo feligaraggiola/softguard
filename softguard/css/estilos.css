@@ -1,0 +1,729 @@
+/* =========================================================
+   ESTILOS DE SOFTGUARD
+   Este archivo le da el "look" a todas las páginas:
+   colores, letras, tarjetas, botones y animaciones.
+   ========================================================= */
+
+
+/* ---------- 0. LAS LETRAS ----------
+   Las fuentes están guardadas en la carpeta "fonts",
+   así la página se ve igual aunque no haya internet. */
+@font-face { font-family: "Anton";    src: url("../fonts/anton.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Archivo";  src: url("../fonts/archivo-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Archivo";  src: url("../fonts/archivo-semi.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Archivo";  src: url("../fonts/archivo-negrita.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Michroma"; src: url("../fonts/michroma.woff2") format("woff2"); font-weight: 400; }
+
+
+/* ---------- 1. COLORES Y COSAS QUE SE REPITEN ----------
+   Acá guardo los colores con un nombre, así si quiero
+   cambiar uno lo cambio una sola vez y se cambia en toda la página. */
+:root {
+  --blanco: #ffffff;
+  --azul-oscuro: #1c1c6b;          /* el azul de las letras sobre fondo blanco */
+  --borde-tarjeta: #6b6bd6;        /* el borde violeta de las tarjetas */
+  --fondo-tarjeta: rgba(255, 255, 255, 0.12);  /* blanco transparente */
+  --fondo-chip: rgba(255, 255, 255, 0.16);     /* las etiquetas tipo "Fiabilidad" */
+
+  /* el fondo de la página: de negro (izquierda) a azul fuerte (derecha) */
+  --fondo-pagina: linear-gradient(90deg, #000000 0%, #0d0d40 30%, #1d1d78 62%, #3434cf 100%);
+  /* el fondo de arriba y de abajo: de gris a lila */
+  --fondo-barras: linear-gradient(90deg, #45454d 0%, #55558f 50%, #6a6cc9 100%);
+
+  /* las letras que uso */
+  --letra-titulos: "Anton", Impact, sans-serif;
+  --letra-texto: "Archivo", Arial, sans-serif;
+  --letra-marca: "Michroma", "Archivo", sans-serif;
+}
+
+
+/* ---------- 2. REGLAS GENERALES ----------
+   Esto saca los márgenes que el navegador pone solo
+   y arma la página en tres partes: arriba, contenido y abajo. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fondo-pagina);
+  color: var(--blanco);
+  font-family: var(--letra-texto);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* La parte del medio ocupa todo el espacio que sobra,
+   así el pie siempre queda abajo de todo. */
+main {
+  flex: 1;
+  padding: 60px 80px 70px;
+}
+
+
+/* ---------- 3. TÍTULOS ----------
+   Todos los títulos van en mayúscula, inclinados
+   y con la letra finita y alta (Anton). */
+h1, h2, h3 {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 82px;
+  margin: 20px 0 30px;
+  max-width: 1100px;
+}
+
+h2 {
+  font-size: 36px;
+  margin: 50px 0 30px;
+}
+
+h3 {
+  font-size: 32px;
+  margin-bottom: 18px;
+}
+
+/* el textito de abajo del título grande */
+.bajada {
+  font-size: 20px;
+  line-height: 1.5;
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+/* las palabras resaltadas en blanco, tipo "ISO 9126" */
+.resaltado {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+
+/* ---------- 4. LA BARRA DE ARRIBA (con el logo) ---------- */
+.cabecera {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 125px;
+  background: var(--fondo-barras);
+  border-bottom: 3px solid var(--blanco);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.06);   /* el logo se agranda un poquito al pasar el mouse */
+}
+
+.logo img {
+  width: 82px;
+  height: 82px;
+}
+
+.logo span {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-top: -2px;
+}
+
+/* el botón de las tres rayitas: solo aparece en el celular */
+.btn-menu {
+  display: none;
+  position: absolute;
+  left: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.btn-menu span {
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--blanco);
+  margin: 8px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* cuando el menú está abierto, las rayitas se convierten en una X */
+.btn-menu.abierto span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+.btn-menu.abierto span:nth-child(2) { opacity: 0; }
+.btn-menu.abierto span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+/* el menú que se despliega en el celular (empieza cerrado) */
+.menu-celular {
+  display: none;
+  flex-direction: column;
+  background: #18185a;
+  border-bottom: 3px solid var(--blanco);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.menu-celular.abierto {
+  max-height: 500px;   /* al abrirse "crece" hacia abajo */
+}
+
+.menu-celular a {
+  padding: 16px 24px;
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 22px;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-celular a.activo {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ---------- 5. LA BARRA DE ABAJO (pie con los links) ---------- */
+.pie {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 18px;
+  background: var(--fondo-barras);
+  border-top: 3px solid var(--blanco);
+}
+
+/* el botón redondo blanco del teléfono (abre WhatsApp) */
+.btn-telefono {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--blanco);
+  transition: transform 0.3s;
+}
+
+.btn-telefono:hover {
+  transform: scale(1.12) rotate(-12deg);   /* se mueve como si sonara */
+}
+
+.btn-telefono svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* la fila de links del pie */
+.pie-links {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pie-links a {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-left: 2px solid rgba(255, 255, 255, 0.8);   /* las rayitas que separan */
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.pie-links a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* el link de la página en la que estoy queda en negrita y subrayado */
+.pie-links a.activo {
+  font-weight: 700;
+  border-bottom: 2px solid var(--blanco);
+}
+
+/* "SOFTGUARD" en el medio del pie, con letras bien separadas */
+.pie-marca {
+  font-family: var(--letra-marca);
+  font-size: 22px;
+  letter-spacing: 7px;
+  padding: 0 14px;
+  white-space: nowrap;
+}
+
+
+/* ---------- 6. EL CAMINITO DE ARRIBA (Inicio / Gestión / ...) ---------- */
+.migas {
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.migas a:hover {
+  text-decoration: underline;
+}
+
+
+/* ---------- 7. LAS TARJETAS ----------
+   Son las cajas con borde violeta y esquinas redondeadas. */
+.tarjeta {
+  background: var(--fondo-tarjeta);
+  border: 3px solid var(--borde-tarjeta);
+  border-radius: 28px;
+  padding: 30px 30px 32px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+/* al pasar el mouse la tarjeta sube un poquito */
+.tarjeta:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.17);
+}
+
+.tarjeta p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* la grilla de 3 tarjetas por fila */
+.grilla-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* la grilla de 2 tarjetas por fila */
+.grilla-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* el link "VER DETALLE +" / "VER MÁS +" */
+.ver-detalle {
+  display: inline-block;
+  margin-top: 22px;
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: letter-spacing 0.3s;
+}
+
+.ver-detalle:hover {
+  letter-spacing: 1px;
+}
+
+/* el texto escondido que aparece al tocar "VER DETALLE" */
+.detalle {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.detalle.visible {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.detalle ul {
+  margin: 16px 0 0 20px;
+  line-height: 1.8;
+}
+
+
+/* ---------- 8. BOTONES TIPO PASTILLA (ISO 9126, TODAS, etc.) ---------- */
+.pastillas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.pastilla {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--blanco);
+  background: transparent;
+  border: 3px solid #5a5ab8;
+  border-radius: 40px;
+  padding: 10px 26px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.pastilla:hover {
+  transform: scale(1.05);
+}
+
+/* la pastilla elegida se pone blanca */
+.pastilla.activa {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  border-color: #a9a9ee;
+}
+
+/* las etiquetitas grises (Funcionalidad, Fiabilidad...) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  background: var(--fondo-chip);
+  border-radius: 20px;
+  padding: 7px 18px;
+  font-size: 17px;
+}
+
+
+/* ---------- 9. PÁGINA DE INICIO ---------- */
+.inicio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.inicio h1 {
+  font-size: clamp(56px, min(7vw, 11vh), 100px);   /* el título se achica solo en pantallas más chicas o más bajitas */
+  line-height: 0.95;
+  max-width: 520px;
+}
+
+.inicio .bajada {
+  max-width: 700px;
+  margin-bottom: 0;
+}
+
+/* ===== LA CASCADA DE CUADRADOS (lado derecho) =====
+   Son dos columnas que bajan sin parar, como una cascada.
+   Cada columna tiene sus 3 cuadrados repetidos dos veces,
+   así cuando termina de bajar vuelve a empezar sin que se note el salto. */
+.cascada {
+  display: flex;
+  gap: 12px;
+  height: calc(100vh - 230px);   /* alto de la pantalla menos la barra de arriba y la de abajo */
+  min-height: 320px;
+  overflow: hidden;              /* lo que se sale de la "ventanita" no se ve */
+  padding: 0 10px;
+  /* esto hace que los cuadrados se desvanezcan arriba y abajo */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* la "cinta" es la tira de cuadrados que se mueve */
+.cinta {
+  display: flex;
+  flex-direction: column;
+  animation: cascada 14s linear infinite;
+}
+
+/* la segunda columna va un poco más lenta, así no bajan las dos iguales */
+.columna-2 .cinta {
+  animation-duration: 18s;
+}
+
+/* cuando paso el mouse por arriba, la cascada se frena
+   y puedo tocar el cuadrado que quiero */
+.cascada:hover .cinta {
+  animation-play-state: paused;
+}
+
+/* el movimiento: arranca corrida para arriba (la mitad de la cinta)
+   y baja hasta su lugar. Como la mitad de abajo es igual a la de arriba,
+   el reinicio no se nota */
+@keyframes cascada {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
+.cuadro {
+  width: 220px;
+  height: 220px;
+  margin: 6px 0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background: var(--fondo-tarjeta);
+  border: 3px solid var(--borde-tarjeta);
+  border-radius: 40px;
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 40px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.cuadro:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* el cuadrado de "Inicio" queda más clarito porque es donde estoy */
+.cuadro.activo {
+  background: #6a6ac8;
+  border-color: var(--blanco);
+}
+
+
+/* ---------- 10. TÉCNICAS: LA ESCALERITA DE NIVELES ----------
+   Las 4 tarjetas van subiendo como una escalera. */
+.escalera {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: end;   /* las alinea por abajo */
+}
+
+.escalera .tarjeta:nth-child(1) { height: 225px; }
+.escalera .tarjeta:nth-child(2) { height: 270px; }
+.escalera .tarjeta:nth-child(3) { height: 315px; }
+.escalera .tarjeta:nth-child(4) { height: 360px; }
+
+
+/* ---------- 11. HERRAMIENTAS: EL CIRCULITO CON EL ÍCONO ---------- */
+.icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--blanco);
+  margin-bottom: 26px;
+}
+
+.icono svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* el textito chiquito "SEGUIMIENTO DE DEFECTOS" */
+.categoria {
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: -6px 0 12px;
+}
+
+/* cuando el filtro esconde una tarjeta */
+.tarjeta.oculta {
+  display: none;
+}
+
+
+/* ---------- 12. ANIMACIONES ----------
+   "aparecer" hace que las cosas suban y se vayan mostrando
+   de a poco cuando se carga la página. */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animar {
+  animation: aparecer 0.7s ease backwards;
+}
+
+/* cada cosa arranca un poquito después que la anterior */
+.demora-1 { animation-delay: 0.1s; }
+.demora-2 { animation-delay: 0.2s; }
+.demora-3 { animation-delay: 0.3s; }
+.demora-4 { animation-delay: 0.4s; }
+.demora-5 { animation-delay: 0.5s; }
+.demora-6 { animation-delay: 0.6s; }
+
+/* se usa cuando cambio de pestaña o de filtro */
+.aparecer-rapido {
+  animation: aparecer 0.45s ease backwards;
+}
+
+
+/* ---------- 13. VERSIÓN CELULAR ----------
+   Todo lo que está acá adentro solo se aplica
+   cuando la pantalla es angosta (celulares). */
+@media (max-width: 800px) {
+
+  main {
+    padding: 30px 22px 40px;
+  }
+
+  .cabecera {
+    height: 100px;
+  }
+
+  .logo img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .logo span {
+    font-size: 11px;
+  }
+
+  .btn-menu {
+    display: block;     /* aparecen las tres rayitas */
+  }
+
+  .menu-celular {
+    display: flex;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin: 14px 0 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin: 30px 0 22px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  .bajada {
+    font-size: 17px;
+    margin-bottom: 26px;
+  }
+
+  /* todas las grillas pasan a una sola columna */
+  .grilla-3,
+  .grilla-2,
+  .escalera {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* en el celu la escalera ya no tiene alturas distintas */
+  .escalera .tarjeta:nth-child(n) {
+    height: auto;
+  }
+
+  .tarjeta {
+    padding: 26px 28px 30px;
+  }
+
+  .pastilla {
+    font-size: 20px;
+    padding: 8px 22px;
+  }
+
+  /* en el pie solo queda el teléfono y "SOFTGUARD" */
+  .pie-links a {
+    display: none;
+  }
+
+  .pie-links {
+    justify-content: center;
+  }
+
+  .pie-marca {
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+
+  /* --- inicio en el celular --- */
+  .inicio {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+
+  .inicio h1 {
+    font-size: 52px;
+    font-style: normal;     /* en el celu el título va derecho */
+    max-width: none;
+    margin-bottom: 10px;
+  }
+
+  .inicio .bajada {
+    font-size: 15px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  /* en el celu la cascada se queda quieta (con el dedo es difícil
+     tocar algo que se mueve): las dos columnas pasan a ser
+     2 filas de 3, y la segunda fila va corrida a la derecha */
+  .cascada {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .cinta {
+    flex-direction: row;
+    gap: 8px;
+    animation: none;   /* sin movimiento */
+  }
+
+  .columna {
+    padding-left: 3%;
+  }
+
+  .columna-2 {
+    padding-left: 10%;   /* esto corre la segunda fila */
+  }
+
+  /* los cuadrados repetidos no hacen falta en el celu */
+  .cuadro.copia {
+    display: none;
+  }
+
+  .cuadro {
+    width: 28%;
+    height: auto;
+    margin: 0;
+    aspect-ratio: 1;
+    border-radius: 28px;
+    font-size: 17px;
+    background: rgba(150, 150, 170, 0.45);
+    border-color: #8a8ae0;
+  }
+
+  .cuadro.activo {
+    background: rgba(150, 150, 170, 0.45);
+    border-color: #8a8ae0;
+  }
+}
