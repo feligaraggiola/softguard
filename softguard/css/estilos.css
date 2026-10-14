@@ -137,15 +137,8 @@ h3 {
 }
 
 .logo img {
-  width: 82px;
-  height: 82px;
-}
-
-.logo span {
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 3px;
-  margin-top: -2px;
+  height: 98px;   /* el logo original (con la S, el escudo y el nombre) */
+  width: auto;
 }
 
 /* el botón de las tres rayitas: solo aparece en el celular */
@@ -645,12 +638,7 @@ h3 {
   }
 
   .logo img {
-    width: 62px;
-    height: 62px;
-  }
-
-  .logo span {
-    font-size: 11px;
+    height: 76px;
   }
 
   .btn-menu {
