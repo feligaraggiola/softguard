@@ -9,6 +9,7 @@
 
   <!-- Mis estilos (colores, tamaños, animaciones) -->
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
 </head>
 <body>
 
@@ -68,34 +69,63 @@
 
     <h2 class="animar demora-5">Tipos de prueba</h2>
 
-    <!-- Caja negra y caja blanca. El botón "Ver detalle +" abre
-         el texto escondido que tiene el mismo nombre en data-detalle -->
+    <!-- Caja negra y caja blanca. El botón "Ver detalle +" abre la ventana
+         emergente con el bloque escondido que tiene el mismo nombre en data-modal -->
     <section class="grilla-2">
       <article class="tarjeta animar demora-5">
         <h3>Caja negra</h3>
         <p>Se evalúa el comportamiento sin conocer el código interno.</p>
-        <div class="detalle" id="detalle-negra">
-          <ul>
-            <li>Partición de equivalencias</li>
-            <li>Análisis de valores límite</li>
-            <li>Tablas de decisión</li>
-          </ul>
-        </div>
-        <button class="ver-detalle" data-detalle="detalle-negra">Ver detalle +</button>
+        <button class="ver-detalle" data-modal="detalle-negra">Ver detalle +</button>
       </article>
       <article class="tarjeta animar demora-6">
         <h3>Caja blanca</h3>
         <p>Se evalúa la estructura interna y el flujo del código.</p>
-        <div class="detalle" id="detalle-blanca">
-          <ul>
-            <li>Cobertura de sentencias</li>
-            <li>Cobertura de decisiones (ramas)</li>
-            <li>Cobertura de caminos</li>
-          </ul>
-        </div>
-        <button class="ver-detalle" data-detalle="detalle-blanca">Ver detalle +</button>
+        <button class="ver-detalle" data-modal="detalle-blanca">Ver detalle +</button>
       </article>
     </section>
+
+    <!-- Lo que muestra cada ventana emergente (está escondido con "hidden") -->
+    <div id="detalle-negra" hidden>
+      <p class="etiqueta">Tipo de prueba</p>
+      <h3>Caja negra</h3>
+      <p>Se prueba el sistema "desde afuera": se le dan datos de entrada y se revisa
+        que la salida sea la esperada, sin mirar cómo está programado por dentro.</p>
+      <h3 style="font-size:22px; margin-top:22px">Técnicas más usadas</h3>
+      <ul>
+        <li><strong>Partición de equivalencias:</strong> agrupar los datos que se comportan igual y probar uno de cada grupo.</li>
+        <li><strong>Valores límite:</strong> probar justo en los bordes (ej: 0, 1, 100 y 101 si se aceptan de 1 a 100).</li>
+        <li><strong>Tablas de decisión:</strong> probar todas las combinaciones de condiciones importantes.</li>
+      </ul>
+      <h3 style="font-size:22px; margin-top:22px">Caja negra vs. caja blanca</h3>
+      <table class="tabla" style="min-width:0">
+        <tbody>
+          <tr><th>¿Ve el código?</th><td>No</td><td>Sí</td></tr>
+          <tr><th>¿Quién la hace?</th><td>Testers, usuarios</td><td>Programadores</td></tr>
+          <tr><th>Se basa en</th><td>Los requisitos</td><td>El código fuente</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="detalle-blanca" hidden>
+      <p class="etiqueta">Tipo de prueba</p>
+      <h3>Caja blanca</h3>
+      <p>Se prueba el sistema "desde adentro": se mira el código y se arman pruebas
+        para recorrer sus instrucciones, decisiones y caminos.</p>
+      <h3 style="font-size:22px; margin-top:22px">Técnicas más usadas</h3>
+      <ul>
+        <li><strong>Cobertura de sentencias:</strong> que cada línea de código se ejecute al menos una vez.</li>
+        <li><strong>Cobertura de decisiones:</strong> que cada <em>if</em> se pruebe por el verdadero y por el falso.</li>
+        <li><strong>Cobertura de caminos:</strong> recorrer todos los caminos posibles del código.</li>
+      </ul>
+      <h3 style="font-size:22px; margin-top:22px">Caja blanca vs. caja negra</h3>
+      <table class="tabla" style="min-width:0">
+        <tbody>
+          <tr><th>¿Ve el código?</th><td>Sí</td><td>No</td></tr>
+          <tr><th>¿Quién la hace?</th><td>Programadores</td><td>Testers, usuarios</td></tr>
+          <tr><th>Se basa en</th><td>El código fuente</td><td>Los requisitos</td></tr>
+        </tbody>
+      </table>
+    </div>
 
   </main>
 

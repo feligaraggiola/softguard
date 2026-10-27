@@ -1,0 +1,993 @@
+/* =========================================================
+   ESTILOS DE LAS SECCIONES NUEVAS (sprint 2)
+   Acá van las cosas que aparecen en las páginas nuevas:
+   la línea de tiempo, los diagramas, el tablero Kanban,
+   el glosario, el formulario, la encuesta, etc.
+   Los colores y letras salen de estilos.css.
+   ========================================================= */
+
+
+/* ---------- 1. COSAS GENERALES ---------- */
+
+/* cuando toco un link que lleva a una parte de la misma página,
+   baja despacito en vez de saltar de golpe */
+html {
+  scroll-behavior: smooth;
+}
+
+/* deja un margen arriba cuando bajo a una sección,
+   así el título no queda pegado al borde */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* lo que tiene "hidden" siempre queda escondido,
+   aunque sea una grilla o una caja flexible */
+[hidden] {
+  display: none !important;
+}
+
+/* texto que no se ve pero que sí lee el lector de pantalla
+   (para personas que no ven bien) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* el formulario es una tarjeta, pero no tiene que moverse con el mouse */
+form.tarjeta:hover {
+  transform: none;
+}
+
+/* las pastillas también pueden ser links (no solo botones) */
+a.pastilla {
+  display: inline-block;
+}
+
+/* un botón apagado (por ejemplo "Anterior" cuando estoy en el paso 1) */
+.pastilla:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* grilla de 4 tarjetas por fila */
+.grilla-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* textito chiquito en mayúsculas arriba de un título (ej: "ETAPA 1 DE 6") */
+.etiqueta {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* los textitos chicos dentro de las tarjetas no tienen que agrandarse
+   (la regla ".tarjeta p" de estilos.css los ponía en 16px) */
+.tarjeta p.etiqueta,
+.tarjeta p.aviso-pestana {
+  font-size: 13px;
+}
+
+.tarjeta p.categoria {
+  font-size: 14px;
+}
+
+/* listas con puntitos dentro de las tarjetas */
+.tarjeta ul {
+  margin: 4px 0 0 20px;
+  line-height: 1.8;
+}
+
+/* aclaración chiquita debajo de algo (ej: "Haz clic en un diagrama...") */
+.nota {
+  font-size: 15px;
+  margin-top: 22px;
+}
+
+/* separación entre bloques que van uno abajo del otro */
+.apilado > * + * {
+  margin-top: 22px;
+}
+
+
+/* ---------- 2. VENTANA EMERGENTE (MODAL) ----------
+   Es el cuadro que aparece arriba de todo con el fondo oscuro.
+   La uso para ver los diagramas en grande y para los detalles
+   de caja negra / caja blanca. Empieza invisible. */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(5, 5, 30, 0.85);
+  opacity: 0;
+  pointer-events: none;     /* mientras está cerrado no se puede tocar */
+  transition: opacity 0.3s;
+}
+
+.modal.abierto {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-caja {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #20205f, #2f2fa0);
+  border: 3px solid var(--borde-tarjeta);
+  border-radius: 28px;
+  padding: 34px;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+}
+
+.modal.abierto .modal-caja {
+  transform: scale(1);    /* al abrirse "crece" un poquito */
+}
+
+.modal-caja img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* la X para cerrar */
+.modal-cerrar {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: var(--blanco);
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.modal-cerrar:hover {
+  transform: rotate(90deg);
+}
+
+
+/* ---------- 3. SDLC: LA LÍNEA DE TIEMPO ---------- */
+.linea-tiempo {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+  list-style: none;
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding-top: 14px;
+  background: none;
+  border: none;
+  border-top: 5px solid rgba(255, 255, 255, 0.22);   /* la rayita de arriba */
+  color: var(--blanco);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.4s;
+}
+
+/* las etapas que ya pasé quedan con la rayita violeta */
+.etapa.vista {
+  border-top-color: #8a8ae0;
+}
+
+/* la etapa en la que estoy queda con la rayita blanca */
+.etapa.activa {
+  border-top-color: var(--blanco);
+}
+
+/* el circulito con el número */
+.etapa .numero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid #6b6bd6;
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 20px;
+  transition: box-shadow 0.4s, border-color 0.4s, background 0.4s;
+}
+
+/* el circulito de la etapa actual se "ilumina" */
+.etapa.activa .numero {
+  border-color: var(--blanco);
+  background: #1c1c6b;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+.etapa .nombre {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.etapa:hover .numero {
+  border-color: var(--blanco);
+}
+
+/* los botones Anterior / Siguiente */
+.botones-paso {
+  display: flex;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+
+/* ---------- 4. MODELOS: VENTAJAS (verde) Y DESVENTAJAS (rojo) ---------- */
+.tarjeta.verde {
+  border-color: #4ade80;
+  background: linear-gradient(135deg, rgba(16, 110, 80, 0.45), rgba(30, 60, 150, 0.45));
+}
+
+.tarjeta.roja {
+  border-color: #f2729a;
+  background: linear-gradient(135deg, rgba(140, 40, 120, 0.45), rgba(100, 60, 190, 0.45));
+}
+
+/* el ✓ o la ✕ al lado del título */
+.tarjeta h3 .simbolo {
+  font-style: normal;
+  margin-right: 8px;
+}
+
+
+/* ---------- 5. DIAGRAMAS (ilustraciones) ---------- */
+.diagrama {
+  display: flex;
+  flex-direction: column;
+}
+
+/* el diagrama es un botón: al tocarlo se abre en grande */
+.diagrama button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+  border-radius: 14px;
+  transition: transform 0.3s;
+}
+
+.diagrama button:hover {
+  transform: scale(1.03);
+}
+
+.diagrama img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.diagrama p {
+  margin-top: 14px;
+}
+
+
+/* ---------- 6. METODOLOGÍAS ÁGILES ---------- */
+
+/* el índice de arriba (Valores, Scrum, Kanban, XP):
+   se queda "pegado" arriba de la pantalla mientras bajo */
+.indice {
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+  width: fit-content;
+  max-width: 100%;
+  padding: 8px;
+  margin-bottom: 18px;
+  border-radius: 40px;
+  background: rgba(10, 10, 50, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.indice .pastillas {
+  margin-bottom: 0;
+}
+
+/* el numerito gris de cada principio */
+.num {
+  display: inline-block;
+  min-width: 34px;
+  padding: 1px 10px;
+  margin-right: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.18);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* las fichas de Scrum / Kanban / XP (Principios, Roles, ...) */
+.ficha dt {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #b4b4ff;
+  margin-top: 12px;
+}
+
+.ficha dt:first-child {
+  margin-top: 0;
+}
+
+.ficha dd {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* ---------- 7. SCRUM: LA BARRA DEL SPRINT ---------- */
+.sprint-barra {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.bloque {
+  flex: 1;
+  min-width: 6px;
+  height: 46px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--blanco);
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.bloque:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Planning, Review y Retrospective son más anchos */
+.bloque.evento {
+  flex: 0 0 15%;
+  background: rgba(120, 120, 220, 0.45);
+}
+
+/* el bloque elegido se pone blanco */
+.bloque.activo {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+}
+
+/* esto solo sirve en el celu para pasar Review y Retro abajo */
+.salto {
+  display: none;
+}
+
+
+/* ---------- 8. KANBAN: EL TABLERO ---------- */
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.col-kanban {
+  min-height: 350px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.col-kanban .cabeza {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.col-kanban .contador {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 24px;
+}
+
+/* cuando arrastro una tarjeta arriba de una columna, se marca */
+.col-kanban.encima {
+  border-color: var(--blanco);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* cuando la columna "En proceso" está llena, el contador se pone rojo */
+.col-kanban.llena .contador {
+  color: #ff8fb0;
+}
+
+.lista-tareas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 60px;
+}
+
+/* cada tarjetita blanca */
+.tarea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  cursor: grab;
+  animation: aparecer 0.35s ease backwards;
+}
+
+.tarea:active {
+  cursor: grabbing;
+}
+
+/* el botoncito redondo ▸ para pasar la tarea a la columna siguiente */
+.tarea .mover {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.tarea .mover:hover {
+  transform: scale(1.15);
+}
+
+/* el cartel de aviso del límite WIP */
+.aviso {
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 2px solid #f2729a;
+  background: rgba(140, 40, 120, 0.35);
+}
+
+/* sacudida cuando no se puede mover una tarea */
+@keyframes sacudir {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.sacudir {
+  animation: sacudir 0.35s;
+}
+
+
+/* ---------- 9. GLOSARIO ---------- */
+
+/* las cajas para escribir (buscador y formulario) */
+.campo-texto {
+  width: 100%;
+  padding: 14px 18px;
+  border: 3px solid var(--borde-tarjeta);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--blanco);
+  font-family: var(--letra-texto);
+  font-size: 17px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.campo-texto::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.campo-texto:focus {
+  outline: none;
+  border-color: var(--blanco);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* el textito en negrita arriba de cada caja */
+.rotulo {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* los circulitos con las letras A-Z */
+.letras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 30px;
+}
+
+.letra {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  font-size: 18px;
+}
+
+/* las letras que no tienen ninguna palabra quedan apagadas */
+.letra:disabled {
+  opacity: 0.25;
+}
+
+.grupo-letra h2 {
+  margin: 30px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #5a5ab8;
+}
+
+.termino dt {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.termino dd {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* la palabra que coincide con lo que busqué se resalta */
+.termino mark {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  border-radius: 3px;
+}
+
+
+/* ---------- 10. PREGUNTAS FRECUENTES (ACORDEÓN) ---------- */
+.acordeon {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pregunta {
+  padding: 0;
+}
+
+.pregunta:hover {
+  transform: none;
+}
+
+/* la parte de arriba que se toca para abrir */
+.pregunta button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 28px;
+  background: none;
+  border: none;
+  color: var(--blanco);
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* el + de la derecha: al abrir gira y queda como una X */
+.pregunta .mas {
+  flex-shrink: 0;
+  font-family: var(--letra-texto);
+  font-style: normal;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.35s;
+}
+
+.pregunta.abierta .mas {
+  transform: rotate(45deg);
+}
+
+/* la respuesta: escondida hasta que se abre */
+.respuesta {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+
+.respuesta p {
+  padding: 0 28px 24px;
+}
+
+
+/* ---------- 11. ENLACES DE INTERÉS ---------- */
+
+/* toda la tarjeta es un link */
+a.tarjeta {
+  display: block;
+}
+
+.tarjeta .flechita {
+  font-family: var(--letra-texto);
+  font-style: normal;
+  font-size: 18px;
+  margin-left: 4px;
+}
+
+.aviso-pestana {
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+
+/* ---------- 12. EJERCICIOS ---------- */
+.solucion {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.solucion.visible {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.solucion p {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-left: 4px solid #4ade80;
+  border-radius: 8px;
+  background: rgba(16, 110, 80, 0.3);
+}
+
+.tarjeta .pastilla {
+  margin-top: 18px;
+  font-size: 20px;
+  padding: 8px 22px;
+}
+
+
+/* ---------- 13. SOBRE NOSOTROS: EL EQUIPO ---------- */
+.miembro .icono {
+  width: 72px;
+  height: 72px;
+  transition: transform 0.4s;
+}
+
+.miembro .icono svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* al pasar el mouse la tarjeta sube, brilla y el ícono da una vuelta */
+.miembro:hover {
+  border-color: var(--blanco);
+  box-shadow: 0 10px 30px rgba(120, 120, 255, 0.35);
+}
+
+.miembro:hover .icono {
+  transform: rotate(360deg);
+}
+
+.miembro .chip {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  padding: 5px 14px;
+}
+
+
+/* ---------- 14. FORMULARIO DE CONTACTO ---------- */
+.campo {
+  margin-bottom: 22px;
+}
+
+select.campo-texto {
+  cursor: pointer;
+}
+
+select.campo-texto option {
+  color: #111;
+}
+
+textarea.campo-texto {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* cuando un dato está mal, la caja se pone roja y aparece el aviso */
+.campo-texto.invalido {
+  border-color: #f2729a;
+}
+
+.error {
+  min-height: 20px;
+  margin-top: 6px;
+  color: #ffa3c0;
+  font-size: 14px;
+}
+
+.mensaje-ok {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid #4ade80;
+  background: rgba(16, 110, 80, 0.35);
+}
+
+
+/* ---------- 15. COMPARADOR (LA TABLA) ---------- */
+.marco-tabla {
+  padding: 0;
+  overflow-x: auto;     /* si no entra en el celu, se desliza para el costado */
+}
+
+.marco-tabla:hover {
+  transform: none;
+}
+
+.tabla {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  vertical-align: top;
+}
+
+.tabla tr:last-child th,
+.tabla tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla thead th {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+/* los nombres de las filas (Enfoque, Roles, ...) */
+.tabla tbody th {
+  font-family: var(--letra-titulos);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  color: #b4b4ff;
+  width: 18%;
+}
+
+.tabla tbody tr {
+  animation: aparecer 0.4s ease backwards;
+}
+
+
+/* ---------- 16. ENCUESTA (PASO A PASO) ---------- */
+
+/* la barra de progreso */
+.progreso {
+  height: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progreso div {
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #8a8ae0, var(--blanco));
+  transition: width 0.5s ease;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* cada respuesta posible es un botón grande */
+.opcion {
+  width: 100%;
+  padding: 22px 28px;
+  border: 3px solid var(--borde-tarjeta);
+  border-radius: 24px;
+  background: var(--fondo-tarjeta);
+  color: var(--blanco);
+  font-family: var(--letra-texto);
+  font-size: 17px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.opcion:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(6px);
+}
+
+/* la respuesta elegida queda marcada */
+.opcion.elegida {
+  border-color: var(--blanco);
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+}
+
+.opcion.elegida::after {
+  content: "  ✓";
+}
+
+/* las barritas del resultado */
+.resultado-fila {
+  display: grid;
+  grid-template-columns: 150px 1fr 60px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.resultado-barra {
+  height: 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.resultado-barra div {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #8a8ae0, var(--blanco));
+  transition: width 0.8s ease;
+}
+
+
+/* ---------- 17. PANTALLAS MEDIANAS ---------- */
+@media (max-width: 1150px) {
+  .grilla-4,
+  .grilla-3,
+  .escalera {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* que una palabra muy larga no estire la tarjeta */
+  .tarjeta {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .linea-tiempo .nombre {
+    font-size: 16px;
+  }
+
+  .bloque {
+    font-size: 15px;
+  }
+}
+
+
+/* ---------- 18. VERSIÓN CELULAR ---------- */
+@media (max-width: 800px) {
+
+  .grilla-4,
+  .grilla-3,
+  .escalera,
+  .tablero {
+    grid-template-columns: 1fr;
+  }
+
+  /* la línea de tiempo pasa a ser vertical, con la rayita a la izquierda */
+  .linea-tiempo {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .etapa {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 6px 0 6px 12px;
+    border-top: none;
+    border-left: 5px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .etapa.vista { border-left-color: #8a8ae0; }
+  .etapa.activa { border-left-color: var(--blanco); }
+
+  .modal-caja {
+    padding: 26px 18px;
+  }
+
+  .indice {
+    top: 6px;
+    border-radius: 24px;
+  }
+
+  /* la barra del sprint: Planning y los días arriba, Review y Retro abajo */
+  .sprint-barra {
+    flex-wrap: wrap;
+  }
+
+  .bloque.evento {
+    flex: 0 0 28%;
+    font-size: 13px;
+  }
+
+  .salto {
+    display: block;
+    flex-basis: 100%;
+    height: 0;
+  }
+
+  .sprint-barra .bloque.evento:last-child,
+  .sprint-barra .bloque.evento:nth-last-child(2) {
+    flex: 1 1 40%;
+  }
+
+  .col-kanban {
+    min-height: 0;
+  }
+
+  .pregunta button {
+    font-size: 19px;
+    padding: 18px 20px;
+  }
+
+  .respuesta p {
+    padding: 0 20px 20px;
+  }
+
+  .letra {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .resultado-fila {
+    grid-template-columns: 95px 1fr 44px;
+    font-size: 14px;
+  }
+
+  .opcion {
+    padding: 16px 20px;
+  }
+}

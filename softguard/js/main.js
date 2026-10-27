@@ -1,8 +1,11 @@
 /* =========================================================
    FUNCIONES DE SOFTGUARD
-   Acá está todo lo que "se mueve" en la página:
+   Acá está lo que se usa en varias páginas a la vez:
    el botón de WhatsApp, el menú del celular, las pestañas,
-   los filtros y los "ver detalle".
+   los filtros y la ventana emergente (para "ver detalle"
+   y para ver los diagramas en grande).
+   Lo que es de una sola página está en su propio archivo
+   (por ejemplo js/kanban.js o js/encuesta.js).
    ========================================================= */
 
 
@@ -94,26 +97,92 @@ filtros.forEach(function (filtro) {
 });
 
 
-/* ---------- 6. VER DETALLE (página Técnicas) ----------
-   Al tocar "VER DETALLE +" se despliega más información
-   abajo, y el "+" pasa a ser "−". Si se toca otra vez, se cierra. */
-const botonesDetalle = document.querySelectorAll(".ver-detalle[data-detalle]");
+/* ---------- 6. VENTANA EMERGENTE (MODAL) ----------
+   Es el cuadro que aparece arriba de todo con el fondo oscuro.
+   No está escrito en el HTML: lo armo acá la primera vez que se necesita,
+   así no tengo que copiarlo en cada página. */
+let modal = null;
 
-botonesDetalle.forEach(function (boton) {
-  boton.addEventListener("click", function () {
-    const detalle = document.getElementById(boton.dataset.detalle);
-    const estaAbierto = detalle.classList.toggle("visible");
+function crearModal() {
+  modal = document.createElement("div");
+  modal.className = "modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.innerHTML =
+    '<div class="modal-caja">' +
+    '  <button class="modal-cerrar" aria-label="Cerrar">×</button>' +
+    '  <div class="modal-contenido"></div>' +
+    '</div>';
+  document.body.appendChild(modal);
 
-    if (estaAbierto) {
-      boton.textContent = "Ver menos −";
-    } else {
-      boton.textContent = "Ver detalle +";
+  // se cierra con la X...
+  modal.querySelector(".modal-cerrar").addEventListener("click", cerrarModal);
+
+  // ...tocando afuera del cuadro (en lo oscuro)...
+  modal.addEventListener("click", function (evento) {
+    if (evento.target === modal) {
+      cerrarModal();
     }
+  });
+
+  // ...o apretando la tecla Escape
+  document.addEventListener("keydown", function (evento) {
+    if (evento.key === "Escape") {
+      cerrarModal();
+    }
+  });
+}
+
+// abre el modal con lo que le pase adentro (texto, una imagen, etc.)
+function abrirModal(contenidoHTML) {
+  if (!modal) {
+    crearModal();
+  }
+  modal.querySelector(".modal-contenido").innerHTML = contenidoHTML;
+  modal.classList.add("abierto");
+  document.body.style.overflow = "hidden";        // que no se mueva la página de atrás
+  modal.querySelector(".modal-cerrar").focus();
+}
+
+function cerrarModal() {
+  if (modal) {
+    modal.classList.remove("abierto");
+    document.body.style.overflow = "";
+  }
+}
+
+
+/* ---------- 7. VER DETALLE (página Técnicas) ----------
+   Al tocar "VER DETALLE +" se abre la ventana emergente con
+   más información. Lo que muestra está escrito en el HTML,
+   en un bloque escondido que tiene el mismo nombre que dice data-modal. */
+const botonesModal = document.querySelectorAll("[data-modal]");
+
+botonesModal.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    const contenido = document.getElementById(boton.dataset.modal);
+    abrirModal(contenido.innerHTML);
   });
 });
 
 
-/* ---------- 7. AYUDITA PARA LAS ANIMACIONES ----------
+/* ---------- 8. VER DIAGRAMAS EN GRANDE (páginas de Ilustraciones) ----------
+   Cada diagrama es un botón. Al tocarlo, abro la ventana emergente
+   con la misma imagen pero grande, con su título arriba. */
+const diagramas = document.querySelectorAll("[data-lightbox]");
+
+diagramas.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    const imagen = boton.querySelector("img");
+    abrirModal(
+      "<h3>" + boton.dataset.lightbox + "</h3>" +
+      '<img src="' + imagen.src + '" alt="' + imagen.alt + '">'
+    );
+  });
+});
+
+
+/* ---------- 9. AYUDITA PARA LAS ANIMACIONES ----------
    Esta función hace que la animación de "aparecer"
    se vuelva a reproducir cada vez que la llamo. */
 function reiniciarAnimacion(elemento) {
