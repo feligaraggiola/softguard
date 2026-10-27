@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Modelos tradicionales</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="proceso.html">Proceso de desarrollo</a> / Modelos tradicionales</p>
+
+    <h1 class="animar demora-1">Modelos tradicionales</h1>
+    <p class="bajada animar demora-2">
+      Aprende sobre los modelos en cascada, en V e iterativo e incremental: ventajas,
+      desventajas y cuándo utilizarlos.
+    </p>
+
+    <!-- Las pestañas: cada botón muestra el bloque que tiene el mismo nombre en data-panel
+         (esto lo maneja la parte 4 de js/main.js, igual que en Fundamentos) -->
+    <div class="pastillas animar demora-2" role="tablist">
+      <button class="pastilla activa" data-panel="cascada">Cascada</button>
+      <button class="pastilla" data-panel="modelo-v">Modelo en V</button>
+      <button class="pastilla" data-panel="iterativo">Iterativo e incremental</button>
+    </div>
+
+    <!-- ===== CASCADA ===== -->
+    <section id="cascada" class="apilado animar demora-3">
+      <article class="tarjeta">
+        <h3>Cascada</h3>
+        <p>Las etapas se completan una tras otra, sin volver atrás.</p>
+      </article>
+      <div class="grilla-2">
+        <article class="tarjeta verde">
+          <h3><span class="simbolo">✓</span>Ventajas</h3>
+          <ul>
+            <li>Simple y fácil de gestionar</li>
+            <li>Documentación completa</li>
+            <li>Hitos claros por fase</li>
+          </ul>
+        </article>
+        <article class="tarjeta roja">
+          <h3><span class="simbolo">✕</span>Desventajas</h3>
+          <ul>
+            <li>Los cambios son costosos</li>
+            <li>El cliente ve el producto al final</li>
+            <li>Errores detectados tarde</li>
+          </ul>
+        </article>
+      </div>
+      <article class="tarjeta">
+        <h3>Cuándo utilizarlo</h3>
+        <p>Requisitos estables y bien definidos, proyectos cortos o muy regulados.</p>
+      </article>
+    </section>
+
+    <!-- ===== MODELO EN V (empieza escondido) ===== -->
+    <section id="modelo-v" class="apilado" hidden>
+      <article class="tarjeta">
+        <h3>Modelo en V</h3>
+        <p>Es una cascada donde cada etapa de desarrollo tiene su propia etapa de prueba asociada.</p>
+      </article>
+      <div class="grilla-2">
+        <article class="tarjeta verde">
+          <h3><span class="simbolo">✓</span>Ventajas</h3>
+          <ul>
+            <li>Las pruebas se planifican desde el principio</li>
+            <li>Cada fase tiene cómo validarse</li>
+            <li>Muy buena trazabilidad</li>
+          </ul>
+        </article>
+        <article class="tarjeta roja">
+          <h3><span class="simbolo">✕</span>Desventajas</h3>
+          <ul>
+            <li>Igual de rígido que la cascada</li>
+            <li>No hay prototipos tempranos</li>
+            <li>Cambiar un requisito afecta a todo</li>
+          </ul>
+        </article>
+      </div>
+      <article class="tarjeta">
+        <h3>Cuándo utilizarlo</h3>
+        <p>Sistemas críticos donde fallar es grave: salud, aviación, bancos o industria.</p>
+      </article>
+    </section>
+
+    <!-- ===== ITERATIVO E INCREMENTAL (empieza escondido) ===== -->
+    <section id="iterativo" class="apilado" hidden>
+      <article class="tarjeta">
+        <h3>Iterativo e incremental</h3>
+        <p>El sistema se construye por partes: en cada ciclo se agrega una porción nueva que ya funciona.</p>
+      </article>
+      <div class="grilla-2">
+        <article class="tarjeta verde">
+          <h3><span class="simbolo">✓</span>Ventajas</h3>
+          <ul>
+            <li>El cliente ve avances temprano</li>
+            <li>Los riesgos se detectan antes</li>
+            <li>Acepta mejor los cambios</li>
+          </ul>
+        </article>
+        <article class="tarjeta roja">
+          <h3><span class="simbolo">✕</span>Desventajas</h3>
+          <ul>
+            <li>Más difícil de planificar el total</li>
+            <li>Necesita una buena arquitectura desde el inicio</li>
+            <li>Puede crecer sin control</li>
+          </ul>
+        </article>
+      </div>
+      <article class="tarjeta">
+        <h3>Cuándo utilizarlo</h3>
+        <p>Proyectos medianos o grandes, con requisitos que se van a ir aclarando con el tiempo.</p>
+      </article>
+    </section>
+
+    <!-- Botón para ir a la página de los diagramas -->
+    <div class="botones-paso animar demora-4">
+      <a href="ilustraciones-modelos.html" class="pastilla">Ver ilustraciones ▸</a>
+    </div>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

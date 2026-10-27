@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 200" role="img" aria-label="Modelo iterativo e incremental">
+<title>Modelo iterativo e incremental</title>
+<style>
+  .caja{fill:#5b5bc9;fill-opacity:.65;stroke:#b4b4ff;stroke-width:2}
+  .txt{fill:#fff;font:bold 13px Arial,Helvetica,sans-serif;text-anchor:middle;dominant-baseline:middle}
+  .chico{fill:#fff;font:bold 11px Arial,Helvetica,sans-serif;text-anchor:middle}
+  .linea{stroke:#d8d8ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+  .flecha{stroke:#e6e6ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none;marker-end:url(#punta)}
+  .col{fill:#5b5bc9;fill-opacity:.45;stroke:#b4b4ff;stroke-width:2}
+  .tarjeta{fill:#fff}
+</style>
+<defs><marker id="punta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e6e6ff"/></marker></defs>
+<rect class="caja" x="10" y="140" width="112" height="50" rx="9"/><text class="txt" x="66" y="165.0">Incremento 1</text><text class="chico" x="66" y="130">↻ ciclo</text><rect class="caja" x="138" y="90" width="112" height="100" rx="9"/><text class="txt" x="194" y="140.0">Incremento 2</text><text class="chico" x="194" y="80">↻ ciclo</text><rect class="caja" x="266" y="40" width="112" height="150" rx="9"/><text class="txt" x="322" y="115.0">Incremento 3</text><text class="chico" x="322" y="30">↻ ciclo</text>
+</svg>

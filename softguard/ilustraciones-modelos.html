@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Ilustraciones de modelos tradicionales</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="proceso.html">Proceso de desarrollo</a> / Ilustraciones</p>
+
+    <h1 class="animar demora-1">Ilustraciones de modelos tradicionales</h1>
+    <p class="bajada animar demora-2">Diagramas que ayudan a comprender cómo se organiza cada modelo.</p>
+
+    <!-- Los 3 diagramas. Son imágenes SVG (pesan muy poco y se ven nítidas en cualquier tamaño).
+         Cada uno está dentro de un botón con data-lightbox: al tocarlo se abre en grande
+         (lo maneja la parte 8 de js/main.js) -->
+    <section class="grilla-3">
+      <figure class="tarjeta diagrama animar demora-2">
+        <h3>Cascada</h3>
+        <button data-lightbox="Cascada" aria-label="Ver el diagrama de cascada en grande">
+          <img src="img/diagramas/cascada.svg" alt="Diagrama del modelo en cascada: Requisitos, Diseño, Código, Pruebas y Mantenimiento, una debajo de la otra como una escalera" width="380" height="222" loading="lazy">
+        </button>
+        <figcaption><p>Cada etapa comienza cuando termina la anterior.</p></figcaption>
+      </figure>
+      <figure class="tarjeta diagrama animar demora-3">
+        <h3>Modelo en V</h3>
+        <button data-lightbox="Modelo en V" aria-label="Ver el diagrama del modelo en V en grande">
+          <img src="img/diagramas/modelo-v.svg" alt="Diagrama del modelo en V: a la izquierda Requisitos, Diseño y Módulos bajan hasta Código, y a la derecha suben Unitarias, Sistema y Aceptación, cada una unida con su etapa" width="390" height="210" loading="lazy">
+        </button>
+        <figcaption><p>Cada fase de desarrollo se valida con una prueba.</p></figcaption>
+      </figure>
+      <figure class="tarjeta diagrama animar demora-4">
+        <h3>Iterativo e incremental</h3>
+        <button data-lightbox="Iterativo e incremental" aria-label="Ver el diagrama iterativo e incremental en grande">
+          <img src="img/diagramas/iterativo.svg" alt="Diagrama iterativo e incremental: tres bloques cada vez más grandes, Incremento 1, 2 y 3, cada uno con su ciclo" width="380" height="200" loading="lazy">
+        </button>
+        <figcaption><p>El producto crece con cada ciclo.</p></figcaption>
+      </figure>
+    </section>
+
+    <p class="nota animar demora-5">Haz clic en un diagrama para verlo en pantalla completa.</p>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+</body>
+</html>
