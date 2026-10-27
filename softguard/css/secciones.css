@@ -704,6 +704,7 @@ a.tarjeta {
 .miembro .chip {
   display: inline-block;
   margin-top: 14px;
+  margin-right: 4px;
   font-size: 14px;
   padding: 5px 14px;
 }
