@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Kanban en detalle</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html" class="activo">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="metodologia.html">Metodología ágil</a> / Kanban</p>
+
+    <h1 class="animar demora-1">Kanban en detalle</h1>
+    <p class="bajada animar demora-2">
+      Kanban es una herramienta para visualizar el trabajo y gestionar el flujo.
+      Mueve las tarjetas y descubre qué es el límite WIP.
+    </p>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="metodologia.html" class="pastilla">Metodologías ágiles</a>
+      <a href="ilustraciones-agiles.html" class="pastilla">Ilustraciones</a>
+      <a href="scrum.html" class="pastilla">Scrum en detalle</a>
+      <a href="kanban.html" class="pastilla activa" aria-current="page">Kanban en detalle</a>
+    </nav>
+
+    <!-- ===== EL TABLERO =====
+         Las tarjetas las dibuja js/kanban.js. Se pueden mover con el botón ▸
+         o arrastrándolas con el mouse a otra columna.
+         "En proceso" tiene un límite de 3 tarjetas (límite WIP). -->
+    <section class="tablero animar demora-3">
+      <article class="tarjeta col-kanban" data-columna="porhacer">
+        <div class="cabeza"><h3>Por hacer</h3><span class="contador" id="contador-porhacer">4</span></div>
+        <div class="lista-tareas" id="lista-porhacer"></div>
+      </article>
+      <article class="tarjeta col-kanban" data-columna="proceso">
+        <div class="cabeza"><h3>En proceso</h3><span class="contador" id="contador-proceso">1/3</span></div>
+        <div class="lista-tareas" id="lista-proceso"></div>
+      </article>
+      <article class="tarjeta col-kanban" data-columna="hecho">
+        <div class="cabeza"><h3>Hecho</h3><span class="contador" id="contador-hecho">1</span></div>
+        <div class="lista-tareas" id="lista-hecho"></div>
+      </article>
+    </section>
+
+    <!-- Cartel que aparece cuando se quiere pasar el límite WIP -->
+    <p class="aviso" id="aviso-wip" role="alert" hidden>
+      <strong>Límite WIP alcanzado:</strong> "En proceso" ya tiene 3 tareas.
+      Terminá una antes de empezar otra. ¡Esa es la idea de Kanban!
+    </p>
+
+    <div class="botones-paso">
+      <button class="pastilla" id="btn-reiniciar">Reiniciar tablero</button>
+    </div>
+
+    <h2>Ideas clave</h2>
+    <section class="grilla-3">
+      <article class="tarjeta">
+        <h3>Visualizar</h3>
+        <p>Hacer visible todo el trabajo y su estado.</p>
+      </article>
+      <article class="tarjeta">
+        <h3>Limitar el WIP</h3>
+        <p>Menos tareas en paralelo, más tareas terminadas.</p>
+      </article>
+      <article class="tarjeta">
+        <h3>Mejorar el flujo</h3>
+        <p>Detectar cuellos de botella y ajustar.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html" class="activo">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+  <script src="js/kanban.js"></script>
+</body>
+</html>
