@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Ciclo de vida del software</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="proceso.html">Proceso de desarrollo</a> / SDLC</p>
+
+    <h1 class="animar demora-1">Ciclo de vida del software (SDLC)</h1>
+    <p class="bajada animar demora-2">
+      Conoce las etapas del ciclo de vida del desarrollo de software y por qué cada una es importante.
+    </p>
+
+    <h2 class="animar demora-2">Etapas del SDLC</h2>
+
+    <!-- La línea de tiempo: 6 botones, uno por etapa.
+         Al tocar uno, abajo se muestra la información de esa etapa
+         (los textos están en js/sdlc.js) -->
+    <ol class="linea-tiempo animar demora-3">
+      <li><button class="etapa activa" data-etapa="0"><span class="numero">1</span><span class="nombre">Requisitos</span></button></li>
+      <li><button class="etapa" data-etapa="1"><span class="numero">2</span><span class="nombre">Diseño</span></button></li>
+      <li><button class="etapa" data-etapa="2"><span class="numero">3</span><span class="nombre">Desarrollo</span></button></li>
+      <li><button class="etapa" data-etapa="3"><span class="numero">4</span><span class="nombre">Pruebas</span></button></li>
+      <li><button class="etapa" data-etapa="4"><span class="numero">5</span><span class="nombre">Despliegue</span></button></li>
+      <li><button class="etapa" data-etapa="5"><span class="numero">6</span><span class="nombre">Mantenimiento</span></button></li>
+    </ol>
+
+    <!-- La tarjeta con la información de la etapa elegida -->
+    <article class="tarjeta animar demora-4" id="info-etapa" aria-live="polite">
+      <p class="etiqueta" id="etapa-numero">Etapa 1 de 6</p>
+      <h3 id="etapa-titulo">Requisitos</h3>
+      <p id="etapa-texto">Se recogen y analizan las necesidades de los usuarios y se define qué debe hacer el sistema.</p>
+      <p style="margin-top:10px"><strong>Por qué importa:</strong> <span id="etapa-importancia">Los errores en esta etapa son los más caros de corregir más adelante.</span></p>
+    </article>
+
+    <!-- Los botones para ir a la etapa anterior o a la siguiente -->
+    <div class="botones-paso animar demora-5">
+      <button class="pastilla" id="btn-anterior" disabled>◂ Anterior</button>
+      <button class="pastilla" id="btn-siguiente">Siguiente ▸</button>
+    </div>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html" class="activo">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+  <script src="js/sdlc.js"></script>
+</body>
+</html>

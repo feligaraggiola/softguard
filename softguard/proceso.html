@@ -9,6 +9,7 @@
 
   <!-- Mis estilos (colores, tamaños, animaciones) -->
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
 </head>
 <body>
 
@@ -36,20 +37,36 @@
   </nav>
 
     <!-- ===== CONTENIDO PRINCIPAL =====
-       Esta sección todavía no está hecha, se suma en el próximo sprint. -->
+       Esta página junta los tres temas de proceso de desarrollo. -->
   <main>
 
     <!-- El caminito para volver atrás -->
     <p class="migas animar"><a href="index.html">Inicio</a> / Proceso de desarrollo</p>
 
     <h1 class="animar demora-1">Proceso de desarrollo</h1>
-    <p class="bajada animar demora-2">Las etapas del ciclo de vida del software, desde los requisitos hasta el mantenimiento.</p>
+    <p class="bajada animar demora-2">
+      Cómo se organiza el trabajo para construir software: las etapas por las que pasa
+      y los modelos clásicos para ordenarlas. Elegí un tema para empezar.
+    </p>
 
-    <article class="tarjeta animar demora-3">
-      <h3>Próximamente</h3>
-      <p>Estamos preparando esta sección. Va a estar disponible en el próximo sprint.</p>
-      <a href="index.html" class="ver-detalle">Volver al inicio +</a>
-    </article>
+    <!-- Las tres tarjetas, cada una lleva a su página -->
+    <section class="grilla-3">
+      <article class="tarjeta animar demora-2">
+        <h3>Ciclo de vida (SDLC)</h3>
+        <p>Las 6 etapas del desarrollo de software, de los requisitos al mantenimiento, paso a paso.</p>
+        <a href="sdlc.html" class="ver-detalle">Ver más +</a>
+      </article>
+      <article class="tarjeta animar demora-3">
+        <h3>Modelos tradicionales</h3>
+        <p>Cascada, modelo en V e iterativo e incremental: ventajas, desventajas y cuándo usarlos.</p>
+        <a href="modelos.html" class="ver-detalle">Ver más +</a>
+      </article>
+      <article class="tarjeta animar demora-4">
+        <h3>Ilustraciones</h3>
+        <p>Diagramas que muestran cómo se organiza cada modelo, para verlos en grande.</p>
+        <a href="ilustraciones-modelos.html" class="ver-detalle">Ver más +</a>
+      </article>
+    </section>
 
   </main>
 
