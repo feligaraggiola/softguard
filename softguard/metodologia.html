@@ -4,11 +4,12 @@
   <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoftGuard | Metodología ágil</title>
+  <title>SoftGuard | Metodologías ágiles</title>
   <link rel="icon" href="img/icono.png">
 
   <!-- Mis estilos (colores, tamaños, animaciones) -->
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
 </head>
 <body>
 
@@ -35,21 +36,99 @@
     <a href="nosotros.html">Sobre nosotros</a>
   </nav>
 
-    <!-- ===== CONTENIDO PRINCIPAL =====
-       Esta sección todavía no está hecha, se suma en el próximo sprint. -->
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main>
 
     <!-- El caminito para volver atrás -->
     <p class="migas animar"><a href="index.html">Inicio</a> / Metodología ágil</p>
 
-    <h1 class="animar demora-1">Metodología ágil</h1>
-    <p class="bajada animar demora-2">Scrum, Kanban y las prácticas ágiles más usadas en los equipos de desarrollo.</p>
+    <h1 class="animar demora-1">Metodologías ágiles</h1>
+    <p class="bajada animar demora-2">Aprende sobre Scrum, Kanban y XP: sus principios, roles, ceremonias y artefactos.</p>
 
-    <article class="tarjeta animar demora-3">
-      <h3>Próximamente</h3>
-      <p>Estamos preparando esta sección. Va a estar disponible en el próximo sprint.</p>
-      <a href="index.html" class="ver-detalle">Volver al inicio +</a>
-    </article>
+    <!-- El índice de esta página: lleva a cada parte de más abajo.
+         Se queda pegado arriba al bajar y marca en qué parte estoy (js/agiles.js) -->
+    <nav class="indice animar demora-2" aria-label="Índice de la página">
+      <div class="pastillas">
+        <a href="#valores" class="pastilla">Valores y principios</a>
+        <a href="#scrum" class="pastilla">Scrum</a>
+        <a href="#kanban" class="pastilla">Kanban</a>
+        <a href="#xp" class="pastilla">XP</a>
+      </div>
+    </nav>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="metodologia.html" class="pastilla activa" aria-current="page">Metodologías ágiles</a>
+      <a href="ilustraciones-agiles.html" class="pastilla">Ilustraciones</a>
+      <a href="scrum.html" class="pastilla">Scrum en detalle</a>
+      <a href="kanban.html" class="pastilla">Kanban en detalle</a>
+    </nav>
+
+    <!-- ===== VALORES Y PRINCIPIOS ===== -->
+    <section id="valores">
+      <h2>Manifiesto ágil · 4 valores</h2>
+      <div class="grilla-4">
+        <article class="tarjeta"><p class="etiqueta">Valor 1</p><p>Individuos e interacciones sobre procesos y herramientas</p></article>
+        <article class="tarjeta"><p class="etiqueta">Valor 2</p><p>Software funcionando sobre documentación extensiva</p></article>
+        <article class="tarjeta"><p class="etiqueta">Valor 3</p><p>Colaboración con el cliente sobre negociación contractual</p></article>
+        <article class="tarjeta"><p class="etiqueta">Valor 4</p><p>Respuesta ante el cambio sobre seguir un plan</p></article>
+      </div>
+
+      <h2>12 principios</h2>
+      <div class="grilla-4">
+        <article class="tarjeta"><p><span class="num">1</span>Satisfacer al cliente con entregas tempranas y continuas.</p></article>
+        <article class="tarjeta"><p><span class="num">2</span>Aceptar cambios de requisitos, incluso avanzado el proyecto.</p></article>
+        <article class="tarjeta"><p><span class="num">3</span>Entregar software funcionando con frecuencia.</p></article>
+        <article class="tarjeta"><p><span class="num">4</span>Negocio y desarrollo trabajan juntos todos los días.</p></article>
+        <article class="tarjeta"><p><span class="num">5</span>Construir en torno a personas motivadas y confiar en ellas.</p></article>
+        <article class="tarjeta"><p><span class="num">6</span>La conversación cara a cara es la comunicación más eficiente.</p></article>
+        <article class="tarjeta"><p><span class="num">7</span>El software funcionando es la medida principal de progreso.</p></article>
+        <article class="tarjeta"><p><span class="num">8</span>Mantener un ritmo de trabajo sostenible.</p></article>
+        <article class="tarjeta"><p><span class="num">9</span>La excelencia técnica y el buen diseño mejoran la agilidad.</p></article>
+        <article class="tarjeta"><p><span class="num">10</span>La simplicidad es esencial: maximizar el trabajo no realizado.</p></article>
+        <article class="tarjeta"><p><span class="num">11</span>Las mejores arquitecturas surgen de equipos autoorganizados.</p></article>
+        <article class="tarjeta"><p><span class="num">12</span>Reflexionar a intervalos regulares para ajustar la forma de trabajar.</p></article>
+      </div>
+    </section>
+
+    <!-- ===== SCRUM ===== -->
+    <section id="scrum">
+      <h2>Scrum</h2>
+      <article class="tarjeta">
+        <dl class="ficha">
+          <dt>Principios</dt><dd>Empirismo: transparencia, inspección y adaptación</dd>
+          <dt>Roles</dt><dd>Product Owner, Scrum Master y Developers</dd>
+          <dt>Ceremonias</dt><dd>Planning, Daily, Review y Retrospective</dd>
+          <dt>Artefactos</dt><dd>Product Backlog, Sprint Backlog e Incremento</dd>
+        </dl>
+      </article>
+    </section>
+
+    <!-- ===== KANBAN ===== -->
+    <section id="kanban">
+      <h2>Kanban</h2>
+      <article class="tarjeta">
+        <dl class="ficha">
+          <dt>Principios</dt><dd>Visualizar el trabajo y limitar el WIP</dd>
+          <dt>Roles</dt><dd>No prescribe roles</dd>
+          <dt>Ceremonias</dt><dd>Reuniones de flujo y revisión (opcionales)</dd>
+          <dt>Artefactos</dt><dd>Tablero, tarjetas y límites WIP</dd>
+        </dl>
+      </article>
+    </section>
+
+    <!-- ===== XP ===== -->
+    <section id="xp">
+      <h2>XP</h2>
+      <article class="tarjeta">
+        <dl class="ficha">
+          <dt>Principios</dt><dd>Comunicación, simplicidad, feedback y coraje</dd>
+          <dt>Roles</dt><dd>Cliente, programador, coach y tester</dd>
+          <dt>Ceremonias</dt><dd>Planificación, integración continua y retrospectivas</dd>
+          <dt>Artefactos</dt><dd>Historias de usuario y pruebas automatizadas</dd>
+        </dl>
+      </article>
+    </section>
 
   </main>
 
@@ -73,5 +152,6 @@
 
   <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
   <script src="js/main.js"></script>
+  <script src="js/agiles.js"></script>
 </body>
 </html>

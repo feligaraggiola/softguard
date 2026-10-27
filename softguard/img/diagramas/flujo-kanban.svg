@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 382 220" role="img" aria-label="Flujo Kanban">
+<title>Flujo Kanban</title>
+<style>
+  .caja{fill:#5b5bc9;fill-opacity:.65;stroke:#b4b4ff;stroke-width:2}
+  .txt{fill:#fff;font:bold 13px Arial,Helvetica,sans-serif;text-anchor:middle;dominant-baseline:middle}
+  .chico{fill:#fff;font:bold 11px Arial,Helvetica,sans-serif;text-anchor:middle}
+  .linea{stroke:#d8d8ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+  .flecha{stroke:#e6e6ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none;marker-end:url(#punta)}
+  .col{fill:#5b5bc9;fill-opacity:.45;stroke:#b4b4ff;stroke-width:2}
+  .tarjeta{fill:#fff}
+</style>
+<defs><marker id="punta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e6e6ff"/></marker></defs>
+<rect class="col" x="10" y="10" width="114" height="200" rx="10"/><text class="txt" x="67" y="30">Por hacer</text><rect class="tarjeta" x="22" y="48" width="90" height="34" rx="7"/><rect class="tarjeta" x="22" y="94" width="90" height="34" rx="7"/><rect class="tarjeta" x="22" y="140" width="90" height="34" rx="7"/><rect class="col" x="134" y="10" width="114" height="200" rx="10"/><text class="txt" x="191" y="30">En proceso</text><rect class="tarjeta" x="146" y="48" width="90" height="34" rx="7"/><rect class="tarjeta" x="146" y="94" width="90" height="34" rx="7"/><rect class="col" x="258" y="10" width="114" height="200" rx="10"/><text class="txt" x="315" y="30">Hecho</text><rect class="tarjeta" x="270" y="48" width="90" height="34" rx="7"/>
+</svg>

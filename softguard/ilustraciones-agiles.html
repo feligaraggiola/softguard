@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Ilustraciones de metodologías ágiles</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html" class="activo">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="metodologia.html">Metodología ágil</a> / Ilustraciones</p>
+
+    <h1 class="animar demora-1">Ilustraciones de metodologías ágiles</h1>
+    <p class="bajada animar demora-2">
+      Esquemas visuales para entender el ciclo del Sprint, el flujo Kanban y el bucle de XP.
+    </p>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="metodologia.html" class="pastilla">Metodologías ágiles</a>
+      <a href="ilustraciones-agiles.html" class="pastilla activa" aria-current="page">Ilustraciones</a>
+      <a href="scrum.html" class="pastilla">Scrum en detalle</a>
+      <a href="kanban.html" class="pastilla">Kanban en detalle</a>
+    </nav>
+
+    <!-- Los 3 esquemas. Igual que en las ilustraciones de modelos tradicionales:
+         son SVG y al tocarlos se abren en grande (parte 8 de js/main.js) -->
+    <section class="grilla-3">
+      <figure class="tarjeta diagrama animar demora-2">
+        <h3>Ciclo del Sprint</h3>
+        <button data-lightbox="Ciclo del Sprint" aria-label="Ver el ciclo del Sprint en grande">
+          <img src="img/diagramas/ciclo-sprint.svg" alt="Ciclo del Sprint: Sprint Planning, luego Desarrollo más Daily, luego Sprint Review y Retrospective, y vuelve a empezar" width="390" height="230" loading="lazy">
+        </button>
+        <figcaption><p>El equipo repite el ciclo en cada Sprint.</p></figcaption>
+      </figure>
+      <figure class="tarjeta diagrama animar demora-3">
+        <h3>Flujo Kanban</h3>
+        <button data-lightbox="Flujo Kanban" aria-label="Ver el flujo Kanban en grande">
+          <img src="img/diagramas/flujo-kanban.svg" alt="Tablero Kanban con tres columnas: Por hacer con tres tarjetas, En proceso con dos y Hecho con una" width="382" height="220" loading="lazy">
+        </button>
+        <figcaption><p>Las tarjetas avanzan de izquierda a derecha.</p></figcaption>
+      </figure>
+      <figure class="tarjeta diagrama animar demora-4">
+        <h3>Bucle de XP</h3>
+        <button data-lightbox="Bucle de XP" aria-label="Ver el bucle de XP en grande">
+          <img src="img/diagramas/bucle-xp.svg" alt="Bucle de XP: rectángulos uno dentro del otro, Release, Iteración, Día y en el centro Pareja más test" width="380" height="220" loading="lazy">
+        </button>
+        <figcaption><p>Ciclos anidados de feedback, de lo largo a lo corto.</p></figcaption>
+      </figure>
+    </section>
+
+    <p class="nota animar demora-5">Haz clic en un diagrama para verlo en pantalla completa.</p>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html" class="activo">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

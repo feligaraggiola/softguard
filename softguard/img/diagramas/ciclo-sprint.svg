@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 230" role="img" aria-label="Ciclo del Sprint">
+<title>Ciclo del Sprint</title>
+<style>
+  .caja{fill:#5b5bc9;fill-opacity:.65;stroke:#b4b4ff;stroke-width:2}
+  .txt{fill:#fff;font:bold 13px Arial,Helvetica,sans-serif;text-anchor:middle;dominant-baseline:middle}
+  .chico{fill:#fff;font:bold 11px Arial,Helvetica,sans-serif;text-anchor:middle}
+  .linea{stroke:#d8d8ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+  .flecha{stroke:#e6e6ff;stroke-width:1.5;stroke-dasharray:5 4;fill:none;marker-end:url(#punta)}
+  .col{fill:#5b5bc9;fill-opacity:.45;stroke:#b4b4ff;stroke-width:2}
+  .tarjeta{fill:#fff}
+</style>
+<defs><marker id="punta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e6e6ff"/></marker></defs>
+<rect class="caja" x="130" y="10" width="130" height="34" rx="9"/><text class="txt" x="195.0" y="28.0">Sprint Planning</text><rect class="caja" x="220" y="98" width="140" height="34" rx="9"/><text class="txt" x="290.0" y="116.0">Desarrollo + Daily</text><rect class="caja" x="130" y="186" width="130" height="34" rx="9"/><text class="txt" x="195.0" y="204.0">Sprint Review</text><rect class="caja" x="30" y="98" width="130" height="34" rx="9"/><text class="txt" x="95.0" y="116.0">Retrospective</text><path class="flecha" d="M262 36 Q300 60 300 94"/><path class="flecha" d="M300 136 Q300 170 264 194"/><path class="flecha" d="M128 202 Q92 180 92 136"/><path class="flecha" d="M92 94 Q92 60 128 32"/>
+</svg>
