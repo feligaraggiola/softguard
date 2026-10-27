@@ -9,6 +9,7 @@
 
   <!-- Mis estilos (colores, tamaños, animaciones) -->
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
 </head>
 <body>
 
@@ -35,21 +36,67 @@
     <a href="nosotros.html" class="activo">Sobre nosotros</a>
   </nav>
 
-    <!-- ===== CONTENIDO PRINCIPAL =====
-       Esta sección todavía no está hecha, se suma en el próximo sprint. -->
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main>
 
     <!-- El caminito para volver atrás -->
     <p class="migas animar"><a href="index.html">Inicio</a> / Sobre nosotros</p>
 
     <h1 class="animar demora-1">Sobre nosotros</h1>
-    <p class="bajada animar demora-2">Quiénes somos y por qué armamos SoftGuard.</p>
+    <p class="bajada animar demora-2">
+      Somos un equipo ágil que quiere hacer accesible el aprendizaje de la calidad del software.
+    </p>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="nosotros.html" class="pastilla activa" aria-current="page">Equipo</a>
+      <a href="contacto.html" class="pastilla">Contacto</a>
+    </nav>
 
     <article class="tarjeta animar demora-3">
-      <h3>Próximamente</h3>
-      <p>Estamos preparando esta sección. Va a estar disponible en el próximo sprint.</p>
-      <a href="index.html" class="ver-detalle">Volver al inicio +</a>
+      <h3>Nuestra motivación</h3>
+      <p>Creemos que entender cómo se construye software de calidad debe ser simple y estar al alcance de todos los estudiantes.</p>
     </article>
+
+    <h2 class="animar demora-3">El equipo</h2>
+
+    <!-- Una tarjeta por integrante. Al pasar el mouse la tarjeta sube,
+         se ilumina y el ícono da una vuelta (eso está en css/secciones.css) -->
+    <section class="grilla-4">
+
+      <article class="tarjeta miembro animar demora-3">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="#1c1c6b" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></div>
+        <p class="categoria">Scrum Master</p>
+        <h3>Matias Chidiak</h3>
+        <p>Organiza el trabajo, modera las ceremonias y elimina bloqueos.</p>
+        <span class="chip">Equipo SoftGuard</span>
+      </article>
+
+      <article class="tarjeta miembro animar demora-4">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="#1c1c6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-1.5-1-2.5S14 15 15 15h2a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/></svg></div>
+        <p class="categoria">Diseñador UX/UI</p>
+        <h3>Rocco Flores</h3>
+        <p>Cuida la interfaz, los estilos y la accesibilidad del portal.</p>
+        <span class="chip">Equipo SoftGuard</span>
+      </article>
+
+      <article class="tarjeta miembro animar demora-5">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="#1c1c6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+        <p class="categoria">Programador</p>
+        <h3>Felipe Garaggiola</h3>
+        <p>Da vida al sitio con HTML, CSS y JavaScript.</p>
+        <span class="chip">Equipo SoftGuard</span>
+      </article>
+
+      <article class="tarjeta miembro animar demora-6">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="#1c1c6b" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></div>
+        <p class="categoria">Tester / QA</p>
+        <h3>Bautista Valdebenito</h3>
+        <p>Garantiza la calidad y valida cada historia de usuario.</p>
+        <span class="chip">Equipo SoftGuard</span>
+      </article>
+
+    </section>
 
   </main>
 

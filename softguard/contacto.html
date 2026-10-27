@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Contacto</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html" class="activo">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="nosotros.html">Sobre nosotros</a> / Contacto</p>
+
+    <h1 class="animar demora-1">Contacto</h1>
+    <p class="bajada animar demora-2">Envíanos tus consultas o comentarios.</p>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="nosotros.html" class="pastilla">Equipo</a>
+      <a href="contacto.html" class="pastilla activa" aria-current="page">Contacto</a>
+    </nav>
+
+    <!-- El formulario. Antes de enviar, js/contacto.js revisa que los datos estén bien.
+         Si está todo bien, abre WhatsApp con el mensaje ya armado.
+         "novalidate" apaga los avisos del navegador para usar los nuestros. -->
+    <form class="tarjeta animar demora-3" id="form-contacto" novalidate>
+
+      <div class="campo">
+        <label class="rotulo" for="nombre">Nombre</label>
+        <input class="campo-texto" type="text" id="nombre" name="nombre" autocomplete="name" aria-describedby="error-nombre">
+        <p class="error" id="error-nombre" aria-live="polite"></p>
+      </div>
+
+      <div class="campo">
+        <label class="rotulo" for="email">Correo electrónico</label>
+        <input class="campo-texto" type="email" id="email" name="email" autocomplete="email" aria-describedby="error-email">
+        <p class="error" id="error-email" aria-live="polite"></p>
+      </div>
+
+      <div class="campo">
+        <label class="rotulo" for="tipo">Tipo de mensaje</label>
+        <select class="campo-texto" id="tipo" name="tipo">
+          <option>Consulta</option>
+          <option>Sugerencia</option>
+          <option>Error en el sitio</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label class="rotulo" for="mensaje">Mensaje</label>
+        <textarea class="campo-texto" id="mensaje" name="mensaje" aria-describedby="error-mensaje"></textarea>
+        <p class="error" id="error-mensaje" aria-live="polite"></p>
+      </div>
+
+      <button class="pastilla activa" type="submit">Enviar</button>
+
+      <p class="mensaje-ok" id="mensaje-ok" role="status" hidden>
+        ¡Gracias! Se abrió WhatsApp con tu mensaje listo: solo tenés que tocar enviar.
+      </p>
+    </form>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html" class="activo">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>
