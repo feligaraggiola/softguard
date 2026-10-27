@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página: idioma, que se vea bien en el celu y el título de la pestaña -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftGuard | Scrum en detalle</title>
+  <link rel="icon" href="img/icono.png">
+
+  <!-- Mis estilos (colores, tamaños, animaciones) -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE ARRIBA =====
+       Tiene el logo en el medio (que lleva al inicio)
+       y el botón de menú que solo se ve en el celular. -->
+  <header class="cabecera">
+    <button class="btn-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Logo de SoftGuard">
+    </a>
+  </header>
+
+  <!-- ===== MENÚ DEL CELULAR =====
+       Está escondido y se abre al tocar las tres rayitas. -->
+  <nav class="menu-celular">
+    <a href="index.html">Inicio</a>
+    <a href="proceso.html">Proceso de desarrollo</a>
+    <a href="gestion-calidad.html">Gestión de calidad</a>
+    <a href="metodologia.html" class="activo">Metodología ágil</a>
+    <a href="recursos.html">Recursos y aprendizaje</a>
+    <a href="nosotros.html">Sobre nosotros</a>
+  </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- El caminito para volver atrás -->
+    <p class="migas animar"><a href="index.html">Inicio</a> / <a href="metodologia.html">Metodología ágil</a> / Scrum</p>
+
+    <h1 class="animar demora-1">Scrum en detalle</h1>
+    <p class="bajada animar demora-2">Roles, eventos y artefactos de Scrum, con un Sprint interactivo.</p>
+
+    <!-- Botones para pasar de una página a otra de esta sección -->
+    <nav class="pastillas animar demora-2" aria-label="Páginas de la sección">
+      <a href="metodologia.html" class="pastilla">Metodologías ágiles</a>
+      <a href="ilustraciones-agiles.html" class="pastilla">Ilustraciones</a>
+      <a href="scrum.html" class="pastilla activa" aria-current="page">Scrum en detalle</a>
+      <a href="kanban.html" class="pastilla">Kanban en detalle</a>
+    </nav>
+
+    <!-- Pestañas: Roles / Eventos / Artefactos (parte 4 de js/main.js) -->
+    <div class="pastillas animar demora-3" role="tablist">
+      <button class="pastilla" data-panel="roles">Roles</button>
+      <button class="pastilla activa" data-panel="eventos">Eventos</button>
+      <button class="pastilla" data-panel="artefactos">Artefactos</button>
+    </div>
+
+    <!-- ===== ROLES (empieza escondido) ===== -->
+    <section id="roles" class="grilla-3" hidden>
+      <article class="tarjeta">
+        <p class="etiqueta">Rol</p>
+        <h3>Product Owner</h3>
+        <p>Decide qué se construye y en qué orden. Es el dueño del Product Backlog y representa al cliente.</p>
+      </article>
+      <article class="tarjeta">
+        <p class="etiqueta">Rol</p>
+        <h3>Scrum Master</h3>
+        <p>Ayuda al equipo a aplicar Scrum, modera los eventos y elimina lo que los frena.</p>
+      </article>
+      <article class="tarjeta">
+        <p class="etiqueta">Rol</p>
+        <h3>Developers</h3>
+        <p>Construyen el Incremento en cada Sprint. Se organizan solos para decidir cómo hacer el trabajo.</p>
+      </article>
+    </section>
+
+    <!-- ===== EVENTOS: EL SPRINT INTERACTIVO ===== -->
+    <section id="eventos" class="animar demora-4">
+
+      <!-- Botones para elegir cuánto dura el Sprint -->
+      <div class="pastillas">
+        <button class="pastilla" data-semanas="1">1 semana</button>
+        <button class="pastilla activa" data-semanas="2">2 semanas</button>
+        <button class="pastilla" data-semanas="3">3 semanas</button>
+        <button class="pastilla" data-semanas="4">4 semanas</button>
+      </div>
+
+      <!-- La barra del Sprint: la arma js/scrum.js
+           (Planning, un cuadradito por cada día de trabajo, Review y Retrospective) -->
+      <div class="sprint-barra" id="sprint-barra"></div>
+
+      <!-- La tarjeta con la explicación del bloque elegido -->
+      <article class="tarjeta" id="info-evento" aria-live="polite">
+        <p class="etiqueta" id="evento-sprint">Sprint de 2 semanas</p>
+        <h3 id="evento-titulo">Planning</h3>
+        <p><strong>Duración sugerida:</strong> <span id="evento-duracion">Hasta 4 h</span></p>
+        <p><strong>Objetivo:</strong> <span id="evento-objetivo">Definir qué se entregará en el Sprint y cómo se hará.</span></p>
+      </article>
+    </section>
+
+    <!-- ===== ARTEFACTOS (empieza escondido) ===== -->
+    <section id="artefactos" class="grilla-3" hidden>
+      <article class="tarjeta">
+        <p class="etiqueta">Compromiso: Objetivo del Producto</p>
+        <h3>Product Backlog</h3>
+        <p>La lista ordenada de todo lo que se podría hacer en el producto. La mantiene el Product Owner.</p>
+      </article>
+      <article class="tarjeta">
+        <p class="etiqueta">Compromiso: Objetivo del Sprint</p>
+        <h3>Sprint Backlog</h3>
+        <p>Lo que el equipo eligió hacer en este Sprint y el plan para lograrlo.</p>
+      </article>
+      <article class="tarjeta">
+        <p class="etiqueta">Compromiso: Definition of Done</p>
+        <h3>Incremento</h3>
+        <p>La parte del producto terminada en el Sprint, que cumple la Definition of Done y se puede usar.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ===== BARRA DE ABAJO =====
+       El botón redondo abre WhatsApp (el número se cambia en js/main.js).
+       Después vienen los links a todas las secciones con "SOFTGUARD" en el medio. -->
+  <footer class="pie">
+    <a href="#" class="btn-telefono" aria-label="Escribinos por WhatsApp">
+      <svg viewBox="0 0 24 24"><path fill="#111" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <nav class="pie-links">
+      <a href="index.html">Inicio</a>
+      <a href="proceso.html">Proceso de desarrollo</a>
+      <a href="gestion-calidad.html">Gestión de calidad</a>
+      <span class="pie-marca">SOFTGUARD</span>
+      <a href="metodologia.html" class="activo">Metodología ágil</a>
+      <a href="recursos.html">Recursos y aprendizaje</a>
+      <a href="nosotros.html">Sobre nosotros</a>
+    </nav>
+  </footer>
+
+  <!-- Las funciones de la página (menú, WhatsApp, etc.) -->
+  <script src="js/main.js"></script>
+  <script src="js/scrum.js"></script>
+</body>
+</html>
